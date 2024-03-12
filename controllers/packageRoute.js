@@ -23,4 +23,15 @@ router.get("/viewpackage",(req,res)=>{
         res.status(200).json(results)
     })
 })
+
+router.post('/deletepackage',(req,res)=>{
+    var packageId=req.body.id
+    packageModel.deletePackage(packageId,(error,results)=>{
+        if (error) {
+            res.status(500).send('Error deleting packages: ' + error);
+            return;
+        }
+        res.status(200).send('Package deleted successfully');
+    })
+})
 module.exports=router;
