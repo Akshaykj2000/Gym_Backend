@@ -11,8 +11,15 @@ const pool=mysql.createPool({
 const memberModel={
     insertMember:(memberData,callback)=>{
         const query='INSERT INTO members SET ?';
-        pool.query(query,memberData,callback)
+        pool.query(query,memberData,callback);
+    },
+
+    searchMemberByName: (name,callback) => {
+        const query='SELECT * FROM members WHERE name = ?';
+        pool.query(query,[name],callback);
     }
+
+
 };
 
-module.exports=memberModel
+module.exports=memberModel;
