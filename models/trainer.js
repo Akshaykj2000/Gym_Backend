@@ -11,6 +11,13 @@ const trainermodel={
     insertTrainer: (trainerData,callback)=>{
         const query='INSERT INTO trainers SET ?';
         pool.query(query,trainerData,callback)
+    },
+
+    viewTrainers:(callback)=>{
+        const query='SELECT * FROM trainers';
+        pool.query(query,callback)
     }
+
 };
+
 module.exports=trainermodel;
