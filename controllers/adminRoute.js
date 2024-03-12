@@ -25,4 +25,15 @@ router.get('/viewregistered',(req,res)=>{
     })
 })
 
+router.post('/deletemember',(req,res)=>{
+    var memberId=req.body.id
+    memberModel.deleteMember(memberId,(error,results)=>{
+        if (error) {
+            res.status(500).send('Error deleting member: ' + error);
+            return;
+        }
+        res.status(200).send('Member deleted successfully');
+    })
+})
+
 module.exports=router
