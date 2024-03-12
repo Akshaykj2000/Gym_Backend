@@ -5,7 +5,7 @@ const trainerRouter=require('./controllers/trainerRoute')
 const packageRouter=require('./controllers/packageRoute')
 
 const app = express();
-const port = 4306;
+const port = 3006;
 
 app.use(express.json());
 
