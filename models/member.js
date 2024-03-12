@@ -28,7 +28,13 @@ const memberModel={
     deleteMember:(id,callback)=>{
         const query='DELETE FROM members WHERE id=?';
         pool.query(query,[id],callback)
+    },
+    
+    searchMemberByName: (name,callback) => {
+        const query='SELECT * FROM members WHERE name = ?';
+        pool.query(query,[name],callback);
     }
+
 };
 
 module.exports=memberModel
