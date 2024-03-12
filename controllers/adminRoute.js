@@ -15,5 +15,14 @@ router.post('/approve',(req,res)=>{
     })
 })
 
+router.get('/viewregistered',(req,res)=>{
+    memberModel.viewMembers((error,results)=>{
+        if (error) {
+            res.status(500).send('Error fetching members: '+error)
+            return 
+        }
+        res.status(200).json(results);
+    })
+})
 
 module.exports=router
