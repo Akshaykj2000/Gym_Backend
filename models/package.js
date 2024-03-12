@@ -7,8 +7,14 @@ const pool=mysql.createPool({
     database:'gymDB'
 
 });
-const packageModel={insertpackage:(packagedata,callback)=>{
+const packageModel={
+    insertpackage:(packagedata,callback)=>{
     const query='INSERT INTO packages SET ?';
     pool.query(query,packagedata,callback)
-}}
+},
+    viewPackage:(callback)=>{
+        const query='SELECT * FROM packages'
+        pool.query(query,callback)
+    }
+}
 module.exports=packageModel;
