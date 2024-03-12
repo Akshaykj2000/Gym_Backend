@@ -14,4 +14,13 @@ router.post("/addpackage",(req,res)=>{
     })
 })
 
+router.get("/viewpackage",(req,res)=>{
+    packageModel.viewPackage((error,results)=>{
+        if (error) {
+            res.status(500).send('Error fetching packages:'+error)
+            return
+        }
+        res.status(200).json(results)
+    })
+})
 module.exports=router;
