@@ -23,7 +23,13 @@ const memberModel={
     viewMembers:(callback)=>{
         const query='SELECT * FROM members';
         pool.query(query,callback)
+    },
+    
+    searchMemberByName: (name,callback) => {
+        const query='SELECT * FROM members WHERE name = ?';
+        pool.query(query,[name],callback);
     }
+
 };
 
 module.exports=memberModel
