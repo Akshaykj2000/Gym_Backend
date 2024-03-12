@@ -18,6 +18,11 @@ const memberModel={
         const query='UPDATE members SET paymentStatus = ? WHERE id = ?';
         const values=['Paid',id];
         pool.query(query,values,callback)
+    },
+
+    viewMembers:(callback)=>{
+        const query='SELECT * FROM members';
+        pool.query(query,callback)
     }
 };
 
