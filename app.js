@@ -1,16 +1,12 @@
 const express = require('express');
-const mongoose=require("mongoose")
-
-
-
-const member=require("./controller/member")
+const memberRouter=require('./controllers/memberRoute')
 
 const app = express();
 const port = 3006;
 
 app.use(express.json());
 
-app.use("/api/member",member)
+app.use("/api/members",memberRouter)
 
 app.listen(port, () => {
   console.log(`Server is running ...`);
