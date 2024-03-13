@@ -34,5 +34,45 @@ router.post('/search', (req, res) => {
 });
 
 
+router.post('/myprofile',(req,res) => {
+    var memberId = req.body.id
+
+    memberModel.viewMyProfile(memberId,(error,results)=>{
+        try{
+            if (error) {
+                console.error('Error fetching user profile:', err);
+                return res.status(500).json({
+                  status: "Internal Server Error"
+                });
+              }
+              if (results.length === 0) {
+                return res.json({
+                  status: "Invalid user"
+                });
+              } else {
+                const data = results[0]; // Assuming there is only one matching row
+    
+                // Prepare response data
+                const responseData = {
+                  name: data.name,
+                  address: data.address,
+                  weight: data.weight,
+                  height: data.height,
+                  emailid: data.emailid,
+                  contactno: data.contactNum
+                };
+    
+                console.log(responseData);
+    
+                return res.json(responseData);
+              }
+        } catch (error) {
+        console.error('Error fetching user profile:', error);
+        return res.status(500).json({
+          status: "Internal Server Error"
+        });
+      }
+    })
+})
 
 module.exports=router

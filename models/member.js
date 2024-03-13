@@ -36,6 +36,11 @@ const memberModel={
     },
 
 
+    viewMyProfile : (id,callback)=>{
+        const query = 'SELECT * FROM members WHERE id = ?';
+        pool.query(query,[id],callback)
+    }
 
+};
 
 module.exports=memberModel
