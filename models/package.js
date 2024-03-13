@@ -1,10 +1,11 @@
 const mysql=require("mysql")
+require("dotenv").config()
 
 const pool=mysql.createPool({
-    host:'localhost',
-    user:'root',
+    host:process.env.DB_HOST,
+    user:process.env.DB_USER,
     password:'',
-    database:'gymdb'
+    database:process.env.DB_NAME
 
 });
 const packageModel={
