@@ -34,4 +34,6 @@ router.post('/deletepackage',(req,res)=>{
         res.status(200).send('Package deleted successfully');
     })
 })
+
+
 module.exports=router;
