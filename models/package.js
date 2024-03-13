@@ -4,8 +4,8 @@ require("dotenv").config()
 const pool=mysql.createPool({
     host:process.env.DB_HOST,
     user:process.env.DB_USER,
-    password:'',
-    database:process.env.DB_NAME
+    database:process.env.DB_NAME,
+    port:process.env.DB_PORT
 
 });
 const packageModel={
@@ -27,6 +27,12 @@ const packageModel={
     selectPackage:(id,callback)=>{
         const query='SELECT * FROM packages WHERE id=?';
         pool.query(query,[id],callback)
+    },
+
+    updatePackage: (id, newData, callback) => {
+        const query = 'UPDATE packages SET packageName = ?, packagePrice = ?, packageDuration = ?, packageDescription = ? WHERE id = ?';
+        const { packageName, packagePrice, packageDuration, packageDescription } = newData;
+        pool.query(query, [packageName, packagePrice, packageDuration, packageDescription, id],callback) 
     }
 }
 module.exports=packageModel;

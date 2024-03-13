@@ -47,4 +47,14 @@ router.post("/selectpackage",async(req,res)=>{
 })
 
 
+router.post("/updatepackage", async (req, res) => {
+    let { id, ...rest } = req.body; 
+    packageModel.updatePackage(id, rest, (error, results) => { 
+        if (error) {
+            res.status(500).send('Error updating package: ' + error); 
+            return;
+        }
+        res.status(200).send('Package updated successfully');
+    });
+});
 module.exports=router;
