@@ -1,10 +1,21 @@
 const express=require('express')
 const memberModel=require("../models/member")
+const bcrypt=require("bcryptjs")
+
+hashPasswordgenerator=async(pass)=>{
+    const salt=await bcrypt.genSalt(10)
+    return bcrypt.hash(pass,salt)
+}
 
 const router=express.Router()
 
 //route to member register
-router.post('/register',(req,res)=>{
+router.post('/signup',async(req,res)=>{
+    let{data}={"data":req.body}
+    let password=data.password
+    const hashedPassword=await hashPasswordgenerator(password)
+    data.password=hashedPassword
+    let results=memberModel.insertMember(data)
     memberModel.insertMember(req.body,(error,results)=>{
         if (error) {
             res.status(500).send('Error inserting member data'+error)
