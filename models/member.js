@@ -35,12 +35,16 @@ const memberModel={
         const query='SELECT * FROM members WHERE name = ?';
         pool.query(query,[name],callback);
     },
-
+    memberLogin:(emailid)=>{
+        const query='SELECT emailid,password FROM members WHERE emailid=?';
+        pool.query(query,[emailid]);
+    },
 
     viewMyProfile : (id,callback)=>{
         const query = 'SELECT * FROM members WHERE id = ?';
         pool.query(query,[id],callback)
-    }
+    },
+    
 
 };
 
