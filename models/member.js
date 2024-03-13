@@ -1,11 +1,12 @@
 const mysql=require('mysql')
+require("dotenv").config()
 
 //MySQL connection
 const pool=mysql.createPool({
-    host:'localhost',
-    user:'root',
+    host:process.env.DB_HOST,
+    user:process.env.DB_USER,
     password:'',
-    database:'gymDB'
+    database:process.env.DB_NAME
 });
 
 const memberModel={
@@ -33,6 +34,12 @@ const memberModel={
     searchMemberByName: (name,callback) => {
         const query='SELECT * FROM members WHERE name = ?';
         pool.query(query,[name],callback);
+    },
+
+
+    viewMyProfile : (id,callback)=>{
+        const query = 'SELECT * FROM members WHERE id = ?';
+        pool.query(query,[id],callback)
     }
 
 };

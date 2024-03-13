@@ -6,6 +6,7 @@ const pool=mysql.createPool({
     user:process.env.DB_USER,
     database:process.env.DB_NAME,
     port:process.env.DB_PORT
+
 });
 const packageModel={
     insertpackage:(packagedata,callback)=>{
