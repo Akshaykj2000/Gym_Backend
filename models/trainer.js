@@ -4,7 +4,8 @@ const pool=mysql.createPool({
     host:'localhost',
     user:'root',
     password:'',
-    database:'gymdb'
+    database:'gymdb',
+    port:4306
 });
 
 const trainermodel={

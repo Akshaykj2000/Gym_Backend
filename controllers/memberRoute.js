@@ -27,6 +27,23 @@ router.post('/signup',async(req,res)=>{
     
 });
 
+router.post("/login",async(req,res)=>{
+    var emailid,password=req.body
+    memberModel.memberLogin(emailid,(error)=>{
+        if(error){
+            return res.json({status:"Invalid user"});
+        }
+    memberModel.memberLogin(password,(error)=>{
+        if(error){
+            return res.json({status:"Incorrect password"});
+        }
+    })
+    })
+    res.json({
+        status:"success"
+    })
+});
+    
 router.post('/search', (req, res) => {
     var memberName =req.body.name
 
