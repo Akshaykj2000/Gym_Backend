@@ -35,5 +35,14 @@ router.post('/deletepackage',(req,res)=>{
     })
 })
 
-
+router.post("/selectpackage",async(req,res)=>{
+    let packageid=req.body.id
+    packageModel.selectPackage(packageid,(error,results)=>{
+        if (error) {
+            res.status(500).send('Error selecting packages: ' + error);
+            return;
+        }
+        res.status(200).send('Package selected successfully');
+    })
+})
 module.exports=router;

@@ -4,7 +4,7 @@ const pool=mysql.createPool({
     host:'localhost',
     user:'root',
     password:'',
-    database:'gymDB'
+    database:'gymdb'
 
 });
 const packageModel={
@@ -20,6 +20,11 @@ const packageModel={
     
     deletePackage:(id,callback)=>{
         const query='DELETE FROM packages WHERE id=?';
+        pool.query(query,[id],callback)
+    },
+
+    selectPackage:(id,callback)=>{
+        const query='SELECT * FROM packages WHERE id=?';
         pool.query(query,[id],callback)
     }
 }
