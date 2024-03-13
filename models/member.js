@@ -34,6 +34,12 @@ const memberModel={
     searchMemberByName: (name,callback) => {
         const query='SELECT * FROM members WHERE name = ?';
         pool.query(query,[name],callback);
+    },
+
+
+    viewMyProfile : (id,callback)=>{
+        const query = 'SELECT * FROM members WHERE id = ?';
+        pool.query(query,[id],callback)
     }
 
 };
